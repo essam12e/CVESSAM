@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Essam Hamood Abdo - ATS CV</title>
+  <style>
+    :root {
+      --text: #000000;
+      --muted: #000000;
+      --line: #000000;
+      --accent: #000000;
+      --bg: #ffffff;
+    }
+
+    @page {
+      size: A4;
+      margin: 12mm;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: Arial, Tahoma, sans-serif;
+      color: var(--text);
+      background: #ffffff;
+      line-height: 1.55;
+    }
+
+    .page {
+      width: 186mm;
+      min-height: auto;
+      margin: 0 auto 20px;
+      padding: 0;
+      background: var(--bg);
+    }
+
+    .page + .page {
+      page-break-before: always;
+    }
+
+    .cv-header {
+      border-bottom: 1.5px solid var(--accent);
+      padding-bottom: 10px;
+      margin-bottom: 14px;
+    }
+
+    .name {
+      font-size: 30px;
+      font-weight: 700;
+      margin: 0 0 6px;
+      letter-spacing: 0.2px;
+    }
+
+    .role {
+      font-size: 17px;
+      color: var(--accent);
+      font-weight: 700;
+      margin: 0 0 8px;
+    }
+
+    .contact {
+      font-size: 12.5px;
+      color: var(--muted);
+    }
+
+    .contact span {
+      display: inline-block;
+      margin-inline-end: 12px;
+      margin-bottom: 4px;
+    }
+
+    .section {
+      margin-top: 16px;
+    }
+
+    .section-title {
+      font-size: 15px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--accent);
+      margin: 0 0 8px;
+      padding-bottom: 5px;
+      border-bottom: 1px solid var(--line);
+      font-weight: 700;
+    }
+
+    p {
+      margin: 0;
+      font-size: 13.5px;
+    }
+
+    .entry {
+      margin-bottom: 12px;
+    }
+
+    .entry-head {
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+      align-items: baseline;
+      margin-bottom: 4px;
+    }
+
+    .entry-title {
+      font-size: 14px;
+      font-weight: 700;
+    }
+
+    .entry-subtitle,
+    .entry-date {
+      font-size: 12.5px;
+      color: var(--muted);
+    }
+
+    ul {
+      margin: 6px 0 0;
+      padding-left: 18px;
+      font-size: 13.5px;
+    }
+
+    li { margin-bottom: 4px; }
+
+    .skills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px 10px;
+      font-size: 13.5px;
+    }
+
+    .skills span::after {
+      content: "•";
+      margin-inline-start: 10px;
+      color: #000000;
+    }
+
+    .skills span:last-child::after {
+      content: "";
+      margin: 0;
+    }
+
+    .rtl {
+      direction: rtl;
+      text-align: right;
+      font-family: Tahoma, Arial, sans-serif;
+    }
+
+    .rtl ul {
+      padding-right: 18px;
+      padding-left: 0;
+    }
+
+    .rtl .section-title {
+      text-transform: none;
+      letter-spacing: 0;
+    }
+
+    .rtl .entry-head,
+    .rtl .contact {
+      direction: rtl;
+    }
+
+    .note {
+      margin-top: 10px;
+      font-size: 12px;
+      color: var(--muted);
+    }
+
+    @media print {
+      body { background: #fff; }
+      .page {
+        margin: 0;
+        box-shadow: none;
+        width: auto;
+      }
+    }
+  </style>
+</head>
+<body>
+  <section class="page rtl">
+    <header class="cv-header">
+      <h1 class="name">عصام حمود عبده</h1>
+      <p class="role">مصمم جرافيك، مصمم موشن جرافيك، ومستخدم تقنيات الذكاء الاصطناعي</p>
+      <div class="contact">
+        <span>الجوال: 0573730430</span>
+        <span>واتساب: 0573730430</span>
+        <span>البريد: essamalhttami9@gmail.com</span>
+        <span>الموقع: صنعاء، اليمن</span>
+        <span>تاريخ الميلاد: 28 / 08 / 1999</span>
+        <span>العمر: 26 سنة</span>
+        <span>Behance: behance.net/Essam_ALhttami</span>
+      </div>
+    </header>
+
+    <section class="section">
+      <h2 class="section-title">الملخص المهني</h2>
+      <p>
+        مصمم جرافيك ومصمم موشن جرافيك يمتلك خبرة عملية منذ عام 2020 في إنتاج محتوى بصري إبداعي
+        لمشاريع رقمية ومنصات التواصل الاجتماعي. أستخدم أدوات التصميم الحديثة وتقنيات الذكاء الاصطناعي
+        لتحسين سرعة التنفيذ وجودة المخرجات، مع التركيز على تقديم أعمال احترافية واضحة ومؤثرة.
+      </p>
+    </section>
+
+    <section class="section">
+      <h2 class="section-title">الخبرة العملية</h2>
+      <article class="entry">
+        <div class="entry-head">
+          <div>
+            <div class="entry-title">مصمم جرافيك وموشن جرافيك - عمل حر</div>
+            <div class="entry-subtitle">مشاريع رقمية ومحتوى مرئي لمنصات التواصل الاجتماعي</div>
+          </div>
+          <div class="entry-date">2020 - 2026</div>
+        </div>
+        <ul>
+          <li>تنفيذ تصاميم جرافيكية إبداعية متنوعة لعدة عملاء في مجالات مختلفة.</li>
+          <li>إنتاج فيديوهات موشن جرافيك إعلانية ومقاطع مرئية قصيرة موجهة للتسويق الرقمي.</li>
+          <li>استخدام أدوات الذكاء الاصطناعي لتسريع سير العمل وتحسين جودة المخرجات.</li>
+          <li>إعداد تصاميم ومنشورات مخصصة لمنصات التواصل الاجتماعي بأساليب حديثة وجذابة.</li>
+        </ul>
+      </article>
+    </section>
+
+    <section class="section">
+      <h2 class="section-title">المهارات</h2>
+      <div class="skills">
+        <span>Adobe Photoshop</span>
+        <span>Adobe Illustrator</span>
+        <span>Adobe After Effects</span>
+        <span>Adobe Premiere</span>
+        <span>Adobe InDesign</span>
+        <span>تصاميم سوشيال ميديا</span>
+        <span>Motion Graphics</span>
+        <span>AI Tools</span>
+        <span>إعداد محتوى بصري إعلاني</span>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2 class="section-title">التعليم</h2>
+      <article class="entry">
+        <div class="entry-head">
+          <div>
+            <div class="entry-title">جامعة صنعاء</div>
+            <div class="entry-subtitle">قسم الحاسب الآلي - تخصص جرافكس</div>
+          </div>
+          <div class="entry-date">4 سنوات</div>
+        </div>
+      </article>
+    </section>
+
+    <section class="section">
+      <h2 class="section-title">الشهادات</h2>
+      <p>شهادة تخرج من جامعة صنعاء - قسم الحاسب الآلي - تخصص جرافكس.</p>
+    </section>
+
+    <section class="section">
+      <h2 class="section-title">روابط الأعمال</h2>
+      <p>Behance Portfolio: https://www.behance.net/Essam_ALhttami</p>
+      <p class="note">يمكن استعراض المزيد من الأعمال من خلال الروابط المرفقة داخل الموقع الشخصي.</p>
+    </section>
+  </section>
+
+  <section class="page">
+    <header class="cv-header">
+      <h1 class="name">Essam Hamood Abdo</h1>
+      <p class="role">Graphic Designer, Motion Graphics Designer, and AI Tools Specialist</p>
+      <div class="contact">
+        <span>Phone: 0573730430</span>
+        <span>WhatsApp: 0573730430</span>
+        <span>Email: essamalhttami9@gmail.com</span>
+        <span>Location: Sana'a, Yemen</span>
+        <span>Date of Birth: 28 / 08 / 1999</span>
+        <span>Age: 26 years old</span>
+        <span>Behance: behance.net/Essam_ALhttami</span>
+      </div>
+    </header>
+
+    <section class="section">
+      <h2 class="section-title">Professional Summary</h2>
+      <p>
+        Graphic and motion graphics designer with practical freelance experience since 2020,
+        creating visual content for digital projects and social media platforms. Skilled in modern
+        design tools and AI-assisted workflows to improve speed, consistency, and output quality,
+        with a strong focus on delivering clean, engaging, and effective visual communication.
+      </p>
+    </section>
+
+    <section class="section">
+      <h2 class="section-title">Work Experience</h2>
+      <article class="entry">
+        <div class="entry-head">
+          <div>
+            <div class="entry-title">Freelance Graphic & Motion Graphics Designer</div>
+            <div class="entry-subtitle">Digital content and visual creatives for social media platforms</div>
+          </div>
+          <div class="entry-date">2020 - 2026</div>
+        </div>
+        <ul>
+          <li>Delivered diverse creative graphic design work for clients across different industries.</li>
+          <li>Produced promotional motion graphics videos and short visual ads for digital campaigns.</li>
+          <li>Used AI tools to streamline design workflows and enhance output quality.</li>
+          <li>Created modern social media designs tailored for audience engagement and brand communication.</li>
+        </ul>
+      </article>
+    </section>
+
+    <section class="section">
+      <h2 class="section-title">Skills</h2>
+      <div class="skills">
+        <span>Adobe Photoshop</span>
+        <span>Adobe Illustrator</span>
+        <span>Adobe After Effects</span>
+        <span>Adobe Premiere</span>
+        <span>Adobe InDesign</span>
+        <span>Social Media Designs</span>
+        <span>Motion Graphics</span>
+        <span>AI Tools</span>
+        <span>Promotional Visual Content</span>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2 class="section-title">Education</h2>
+      <article class="entry">
+        <div class="entry-head">
+          <div>
+            <div class="entry-title">Sana'a University</div>
+            <div class="entry-subtitle">Computer Department - Graphics Major</div>
+          </div>
+          <div class="entry-date">4 Years</div>
+        </div>
+      </article>
+    </section>
+
+    <section class="section">
+      <h2 class="section-title">Certificate</h2>
+      <p>Graduation Certificate - Sana'a University, Computer Department, Graphics Major.</p>
+    </section>
+
+    <section class="section">
+      <h2 class="section-title">Portfolio</h2>
+      <p>Behance Portfolio: https://www.behance.net/Essam_ALhttami</p>
+      <p class="note">More work samples are available through the portfolio website and linked project galleries.</p>
+    </section>
+  </section>
+</body>
+</html>
