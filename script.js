@@ -28,6 +28,7 @@ const translations = {
     "sections.skillsTitle": "الأدوات والخبرات",
     "skills.logos": "تصاميم سوشيال ميديا",
     "skills.motion": "الموشن جرافيك",
+    "skills.stores": "إدارة المتاجر الإلكترونية (سلة - زد - ترنديول)",
     "sections.experienceLabel": "الخبرات",
     "sections.experienceTitle": "رحلة العمل",
     "experience.role": "مصمم جرافيك وموشن جرافيك",
@@ -48,6 +49,12 @@ const translations = {
     "projects.collectionTitle": "معارض أعمال وملفات تجميعية",
     "projects.collectionDesc":
       "ملفات تضم نماذج متنوعة من أعمال التصميم والموشن جرافيك لمجالات متعددة.",
+    "projects.websites": "مواقع ومتاجر إلكترونية",
+    "projects.folderWebsites": "نماذج مواقع ومتاجر عملت عليها",
+    "projects.websitesTitle": "نماذج من المواقع والمتاجر",
+    "projects.websitesDesc": "مجموعة مواقع ومتاجر إلكترونية شاركت في تنفيذها أو تطويرها، مع معاينات مباشرة وروابط جاهزة للزيارة.",
+    "projects.showMore": "عرض المزيد",
+    "projects.showLess": "عرض أقل",
     "sections.educationLabel": "التعليم",
     "sections.educationTitle": "المؤهلات التعليمية",
     "education.university": "جامعة صنعاء",
@@ -91,6 +98,7 @@ const translations = {
     "sections.skillsTitle": "Tools & Expertise",
     "skills.logos": "Social Media Designs",
     "skills.motion": "Motion Graphics",
+    "skills.stores": "E-commerce Store Management (Salla - Zid - Trendyol)",
     "sections.experienceLabel": "Experience",
     "sections.experienceTitle": "Work Journey",
     "experience.role": "Graphic & Motion Graphics Designer",
@@ -111,6 +119,12 @@ const translations = {
     "projects.collectionTitle": "Portfolio Collections",
     "projects.collectionDesc":
       "Curated files containing diverse design and motion graphics work across multiple fields.",
+    "projects.websites": "Websites & E-commerce Stores",
+    "projects.folderWebsites": "Sample websites and stores I worked on",
+    "projects.websitesTitle": "Selected Websites & Stores",
+    "projects.websitesDesc": "A selection of websites and online stores I contributed to, with live previews and direct links.",
+    "projects.showMore": "Show more",
+    "projects.showLess": "Show less",
     "sections.educationLabel": "Education",
     "sections.educationTitle": "Academic Background",
     "education.university": "Sana'a University",
@@ -133,6 +147,7 @@ const themeToggle = document.getElementById("themeToggle");
 const themeIcon = themeToggle.querySelector(".theme-icon");
 const revealItems = document.querySelectorAll(".reveal");
 const downloadCvBtn = document.getElementById("downloadCvBtn");
+const toggleLinksButtons = document.querySelectorAll(".toggle-links-btn");
 
 const savedLang = localStorage.getItem("portfolio-language") || "ar";
 const savedTheme = localStorage.getItem("portfolio-theme") || "dark";
@@ -208,6 +223,16 @@ downloadCvBtn?.addEventListener("click", async (event) => {
       ? "ملف السيرة الذاتية غير موجود حاليًا. أرسل ملف PDF لأربطه لك."
       : "The CV PDF is not available yet. Send the PDF file and I will attach it.");
   }
+});
+
+toggleLinksButtons.forEach((button) => {
+  button.addEventListener("click", () => {
+    const targetId = button.dataset.target;
+    const target = document.getElementById(targetId);
+    if (!target) return;
+    const isOpen = target.classList.toggle("open");
+    button.textContent = translations[document.documentElement.lang][isOpen ? "projects.showLess" : "projects.showMore"];
+  });
 });
 
 setLanguage(savedLang);
