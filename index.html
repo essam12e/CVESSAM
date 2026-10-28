@@ -3,16 +3,16 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>عصام حمود عبده | Essam Hamood Abdo — Portfolio</title>
+  <title>عصام حمود عبده — بابلو | Essam Hamood Abdo — PABLO</title>
   <meta
     name="description"
-    content="Portfolio of Essam Hamood Abdo - Graphic Designer, Motion Graphics Designer & AI Tools Specialist"
+    content="Portfolio of Essam Hamood Abdo (PABLO) - Graphic Designer, Motion Graphics Designer & E-commerce Store Builder"
   />
   <meta name="theme-color" content="#0b0b10" />
-  <meta property="og:title" content="Essam Hamood Abdo | Portfolio" />
-  <meta property="og:description" content="Graphic Designer, Motion Graphics Designer & AI Tools Specialist" />
-  <meta property="og:image" content="assets/profile.jpeg" />
-  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%23ff5a36'/%3E%3Ctext x='32' y='43' font-family='Arial' font-weight='700' font-size='30' text-anchor='middle' fill='%23fff'%3EE%3C/text%3E%3C/svg%3E" />
+  <meta property="og:title" content="Essam Hamood Abdo — PABLO" />
+  <meta property="og:description" content="Graphic Designer, Motion Graphics Designer & E-commerce Store Builder" />
+  <meta property="og:image" content="assets/pablo-logo.png" />
+  <link rel="icon" type="image/png" href="assets/pablo-mark.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link
@@ -21,23 +21,37 @@
   />
   <link rel="stylesheet" href="styles.css" />
   <script>
-    try { document.documentElement.dataset.theme = localStorage.getItem("portfolio-theme") || "dark"; } catch { document.documentElement.dataset.theme = "dark"; }
+    (function () {
+      var root = document.documentElement;
+      root.classList.add("js");
+      try { root.dataset.theme = localStorage.getItem("portfolio-theme") || "dark"; } catch (e) { root.dataset.theme = "dark"; }
+    })();
   </script>
 </head>
 <body>
+  <!-- PRELOADER -->
+  <div class="loader" id="loader" aria-hidden="true">
+    <div class="loader-inner">
+      <span class="loader-logo pablo-mask"></span>
+      <span class="loader-bar"><i id="loaderBar"></i></span>
+    </div>
+  </div>
+
+  <div class="cursor" id="cursor" aria-hidden="true"><span id="cursorLabel"></span></div>
   <div class="noise" aria-hidden="true"></div>
   <div class="glow glow-1" aria-hidden="true"></div>
   <div class="glow glow-2" aria-hidden="true"></div>
   <div class="scroll-progress" id="scrollProgress" aria-hidden="true"></div>
 
   <header class="site-header" id="siteHeader">
-    <a href="#hero" class="brand" aria-label="Home">
-      <span class="brand-mark">E</span>
+    <a href="#hero" class="brand" aria-label="PABLO — Home">
+      <span class="brand-mark pablo-mask"></span>
       <span class="brand-name" data-i18n="brand">عصام حمود عبده</span>
     </a>
 
     <nav class="top-nav" id="topNav">
       <a href="#about" data-i18n="nav.about">نبذة</a>
+      <a href="#pablo" data-i18n="nav.pablo">بابلو</a>
       <a href="#services" data-i18n="nav.services">الخدمات</a>
       <a href="#work" data-i18n="nav.work">الأعمال</a>
       <a href="#experience" data-i18n="nav.experience">الخبرات</a>
@@ -50,7 +64,7 @@
         <svg class="icon-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 14.5A8.5 8.5 0 0 1 9.5 4a8.5 8.5 0 1 0 10.5 10.5Z"/></svg>
       </button>
       <button class="icon-btn lang-btn" id="langToggle" type="button" aria-label="Toggle language">EN</button>
-      <a class="header-cta" href="#contact" data-i18n="nav.hire">اطلب تصميمك</a>
+      <a class="header-cta magnetic" href="#contact" data-i18n="nav.hire">اطلب تصميمك</a>
       <button class="icon-btn menu-btn" id="menuToggle" type="button" aria-label="Menu" aria-expanded="false">
         <span></span><span></span>
       </button>
@@ -61,70 +75,67 @@
     <!-- HERO -->
     <section class="hero" id="hero">
       <div class="hero-copy">
-        <p class="availability reveal">
+        <p class="availability" data-hero>
           <span class="pulse"></span>
           <span data-i18n="hero.available">متاح لمشاريع جديدة</span>
         </p>
-        <h1 class="hero-title reveal">
-          <span class="hero-hello" data-i18n="hero.hello">مرحبًا، أنا</span>
-          <span class="hero-name" data-i18n="hero.name">عصام حمود عبده</span>
+        <h1 class="hero-title">
+          <span class="hero-hello" data-hero data-i18n="hero.hello">مرحبًا، أنا</span>
+          <span class="hero-name" data-i18n="hero.name" data-split>عصام حمود عبده</span>
         </h1>
-        <p class="hero-role reveal">
+        <p class="hero-role" data-hero>
           <span data-i18n="hero.rolePrefix">أصمم</span>
           <span class="rotator" id="rotator" aria-live="polite">هويات بصرية</span>
         </p>
-        <p class="hero-description reveal" data-i18n="hero.description">
-          مصمم جرافيك وموشن جرافيك، أستخدم تقنيات الذكاء الاصطناعي لتحويل الأفكار إلى تجارب بصرية جذابة تصنع فرقًا في حضور علامتك التجارية.
+        <p class="hero-description" data-hero data-i18n="hero.description">
+          مصمم جرافيك وموشن جرافيك ومنشئ متاجر إلكترونية، أستخدم تقنيات الذكاء الاصطناعي لتحويل الأفكار إلى تجارب بصرية جذابة تصنع فرقًا في حضور علامتك التجارية.
         </p>
-        <div class="hero-actions reveal">
-          <a class="btn btn-primary" href="#work">
+        <div class="hero-actions" data-hero>
+          <a class="btn btn-primary magnetic" href="#work">
             <span data-i18n="hero.ctaWork">شاهد أعمالي</span>
             <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg>
           </a>
-          <a class="btn btn-ghost" href="assets/Essam-Hamood-Abdo-CV.pdf" download="Essam-Hamood-Abdo-CV.pdf">
+          <a class="btn btn-ghost magnetic" href="assets/Essam-Hamood-Abdo-CV.pdf" download="Essam-Hamood-Abdo-CV.pdf">
             <span data-i18n="hero.ctaCv">تحميل السيرة الذاتية</span>
             <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v11m0 0 4.5-4.5M12 15l-4.5-4.5M5 20h14"/></svg>
           </a>
         </div>
-        <dl class="hero-stats reveal">
+        <dl class="hero-stats" data-hero>
           <div>
-            <dt><span class="js-years">6</span>+</dt>
+            <dt><span class="js-years" data-count-to="6">6</span>+</dt>
             <dd data-i18n="stats.years">سنوات خبرة</dd>
           </div>
           <div>
-            <dt><span class="js-work-count">28</span>+</dt>
+            <dt><span class="js-work-count" data-count-to="58">58</span>+</dt>
             <dd data-i18n="stats.projects">عمل في المعرض</dd>
           </div>
           <div>
-            <dt>AI</dt>
-            <dd data-i18n="stats.ai">سير عمل مدعوم بالذكاء الاصطناعي</dd>
+            <dt><span class="js-motion-count" data-count-to="25">25</span>+</dt>
+            <dd data-i18n="stats.motion">فيديو موشن جرافيك</dd>
           </div>
         </dl>
       </div>
 
-      <div class="hero-visual reveal">
-        <div class="portrait">
+      <div class="hero-visual">
+        <figure class="portrait" id="portrait">
           <img src="assets/profile.jpeg" alt="Essam Hamood Abdo" width="1024" height="1536" />
-          <div class="portrait-tag tag-top">
-            <strong>Motion</strong>
-            <span data-i18n="hero.tagMotion">موشن جرافيك</span>
-          </div>
-          <div class="portrait-tag tag-bottom">
-            <span class="tag-dot"></span>
-            <span data-i18n="hero.location">صنعاء، اليمن</span>
-          </div>
+        </figure>
+        <div class="portrait-caption" data-hero>
+          <span class="tag-dot"></span>
+          <span data-i18n="hero.location">صنعاء، اليمن</span>
+          <span class="caption-sep">/</span>
+          <span>PABLO</span>
         </div>
-        <svg class="spin-badge" viewBox="0 0 120 120" aria-hidden="true">
-          <defs><path id="badgeCircle" d="M60 60m-46 0a46 46 0 1 1 92 0a46 46 0 1 1-92 0"/></defs>
-          <text><textPath href="#badgeCircle">GRAPHIC • MOTION • AI DESIGN • </textPath></text>
-          <path class="badge-arrow" d="M48 72 72 48M54 48h18v18"/>
-        </svg>
       </div>
+
+      <a class="scroll-cue" href="#about" aria-label="Scroll">
+        <span></span>
+      </a>
     </section>
 
     <!-- MARQUEE -->
     <div class="marquee" aria-hidden="true">
-      <div class="marquee-track">
+      <div class="marquee-track" id="marqueeTrack">
         <span>Photoshop</span><i>✦</i><span>Illustrator</span><i>✦</i><span>After Effects</span><i>✦</i><span>Premiere Pro</span><i>✦</i><span>InDesign</span><i>✦</i><span>Midjourney</span><i>✦</i><span>AI Tools</span><i>✦</i><span>Salla</span><i>✦</i><span>Zid</span><i>✦</i><span>Trendyol</span><i>✦</i>
         <span>Photoshop</span><i>✦</i><span>Illustrator</span><i>✦</i><span>After Effects</span><i>✦</i><span>Premiere Pro</span><i>✦</i><span>InDesign</span><i>✦</i><span>Midjourney</span><i>✦</i><span>AI Tools</span><i>✦</i><span>Salla</span><i>✦</i><span>Zid</span><i>✦</i><span>Trendyol</span><i>✦</i>
       </div>
@@ -132,28 +143,28 @@
 
     <!-- ABOUT -->
     <section class="section" id="about">
-      <div class="section-head reveal">
-        <span class="kicker" data-i18n="about.kicker">01 — نبذة</span>
-        <h2 data-i18n="about.title">أصمم بشغف، وأنفّذ بدقة</h2>
+      <div class="section-head">
+        <span class="kicker" data-anim data-i18n="about.kicker">01 — نبذة</span>
+        <h2 data-i18n="about.title" data-split>أصمم بشغف، وأنفّذ بدقة</h2>
       </div>
       <div class="about-grid">
-        <p class="about-text reveal" data-i18n="about.text">
+        <p class="about-text" data-anim data-i18n="about.text">
           أنا عصام حمود عبده، مصمم جرافيك ومصمم موشن جرافيك متخصص في استخدام تقنيات الذكاء الاصطناعي لتطوير حلول إبداعية مبتكرة. أمتلك شغفًا بتحويل الأفكار إلى تصاميم بصرية جذابة ومؤثرة، وأعمل على تقديم محتوى بصري حديث يجمع بين الإبداع والتقنية لتلبية احتياجات العملاء بأعلى جودة.
         </p>
-        <ul class="facts reveal">
-          <li>
+        <ul class="facts">
+          <li data-anim>
             <span data-i18n="facts.location">الموقع</span>
             <strong data-i18n="hero.location">صنعاء، اليمن</strong>
           </li>
-          <li>
+          <li data-anim>
             <span data-i18n="facts.age">العمر</span>
             <strong><span class="js-age">27</span> <span data-i18n="facts.years">سنة</span></strong>
           </li>
-          <li>
+          <li data-anim>
             <span data-i18n="facts.education">التعليم</span>
             <strong data-i18n="facts.educationValue">جامعة صنعاء — حاسب آلي (جرافكس)</strong>
           </li>
-          <li>
+          <li data-anim>
             <span data-i18n="facts.languages">اللغات</span>
             <strong data-i18n="facts.languagesValue">العربية، الإنجليزية</strong>
           </li>
@@ -161,35 +172,58 @@
       </div>
     </section>
 
+    <!-- PABLO -->
+    <section class="section" id="pablo">
+      <div class="pablo">
+        <div class="pablo-card" id="pabloCard">
+          <img class="pablo-logo" id="pabloLogo" src="assets/pablo-logo.png" alt="PABLO — بابلو" width="475" height="438" />
+        </div>
+        <div class="pablo-copy">
+          <span class="kicker" data-anim data-i18n="pablo.kicker">02 — الاسم الحركي</span>
+          <h2 data-i18n="pablo.title" data-split>بابلو، توقيعي الإبداعي</h2>
+          <p class="section-sub" data-anim data-i18n="pablo.text">
+            «بابلو» هو اسمي الحركي وعلامتي التجارية كمصمم ومنشئ متاجر إلكترونية. تحت هذا الاسم أقدّم الهويات البصرية، والموشن جرافيك، وتجهيز المتاجر على سلة وزد بجودة تليق بعلامتك.
+          </p>
+          <div class="pablo-actions" data-anim>
+            <button class="btn btn-primary magnetic" type="button" id="pabloFilm">
+              <svg viewBox="0 0 24 24" aria-hidden="true" class="play-icon"><path d="M8 5.5v13l11-6.5-11-6.5Z"/></svg>
+              <span data-i18n="pablo.film">شاهد فيلم العلامة</span>
+            </button>
+            <span class="pablo-tagline" data-i18n="pablo.tagline">مصمم ومنشئ متاجر إلكترونية</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <!-- SERVICES -->
     <section class="section" id="services">
-      <div class="section-head reveal">
-        <span class="kicker" data-i18n="services.kicker">02 — الخدمات</span>
-        <h2 data-i18n="services.title">ماذا أقدّم لك؟</h2>
+      <div class="section-head">
+        <span class="kicker" data-anim data-i18n="services.kicker">03 — الخدمات</span>
+        <h2 data-i18n="services.title" data-split>ماذا أقدّم لك؟</h2>
       </div>
       <div class="services-grid">
-        <article class="service reveal">
+        <article class="service">
           <span class="service-num">01</span>
           <svg class="service-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3 3 8l9 5 9-5-9-5Z"/><path d="m3 13 9 5 9-5"/></svg>
           <h3 data-i18n="services.s1Title">التصميم الجرافيكي</h3>
           <p data-i18n="services.s1Desc">هويات بصرية، تصاميم سوشيال ميديا، إعلانات ومطبوعات بلمسة احترافية متناسقة.</p>
         </article>
-        <article class="service reveal">
+        <article class="service">
           <span class="service-num">02</span>
           <svg class="service-icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="3"/><path d="m10 9 5 3-5 3V9Z"/></svg>
           <h3 data-i18n="services.s2Title">الموشن جرافيك</h3>
           <p data-i18n="services.s2Desc">فيديوهات إعلانية وتعريفية متحركة تشرح فكرتك وتجذب جمهورك في ثوانٍ.</p>
         </article>
-        <article class="service reveal">
+        <article class="service">
           <span class="service-num">03</span>
           <svg class="service-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v3M12 18v3M3 12h3M18 12h3"/><path d="m12 8 1.2 2.8L16 12l-2.8 1.2L12 16l-1.2-2.8L8 12l2.8-1.2L12 8Z"/></svg>
           <h3 data-i18n="services.s3Title">التصميم بالذكاء الاصطناعي</h3>
           <p data-i18n="services.s3Desc">توظيف أدوات الذكاء الاصطناعي لتسريع الإنتاج ورفع الجودة وابتكار أفكار غير تقليدية.</p>
         </article>
-        <article class="service reveal">
+        <article class="service">
           <span class="service-num">04</span>
           <svg class="service-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16l-1.5 11a2 2 0 0 1-2 1.7h-9a2 2 0 0 1-2-1.7L4 7Z"/><path d="M9 10V6a3 3 0 0 1 6 0v4"/></svg>
-          <h3 data-i18n="services.s4Title">إدارة المتاجر الإلكترونية</h3>
+          <h3 data-i18n="services.s4Title">إنشاء المتاجر الإلكترونية</h3>
           <p data-i18n="services.s4Desc">تجهيز وإدارة المتاجر على سلة وزد وترنديول، من التصميم إلى رفع المنتجات.</p>
         </article>
       </div>
@@ -197,21 +231,24 @@
 
     <!-- WORK -->
     <section class="section" id="work">
-      <div class="section-head reveal">
-        <span class="kicker" data-i18n="work.kicker">03 — معرض الأعمال</span>
-        <h2 data-i18n="work.title">أعمال مختارة</h2>
-        <p class="section-sub" data-i18n="work.sub">اضغط على أي عمل لعرضه بحجم كامل.</p>
+      <div class="section-head">
+        <span class="kicker" data-anim data-i18n="work.kicker">04 — معرض الأعمال</span>
+        <h2 data-i18n="work.title" data-split>أعمال مختارة</h2>
+        <p class="section-sub" data-anim data-i18n="work.sub">اضغط على أي عمل لعرضه بحجم كامل أو تشغيله.</p>
       </div>
 
-      <div class="filters reveal" role="tablist" id="workFilters">
+      <div class="filters" role="tablist" id="workFilters" data-anim>
         <button class="filter is-active" type="button" data-filter="all" role="tab" aria-selected="true">
           <span data-i18n="work.all">الكل</span><em class="count" data-count="all"></em>
         </button>
-        <button class="filter" type="button" data-filter="design" role="tab" aria-selected="false">
-          <span data-i18n="work.design">تصاميم مفردة</span><em class="count" data-count="design"></em>
+        <button class="filter" type="button" data-filter="motion" role="tab" aria-selected="false">
+          <span data-i18n="work.motion">موشن جرافيك</span><em class="count" data-count="motion"></em>
         </button>
-        <button class="filter" type="button" data-filter="collection" role="tab" aria-selected="false">
-          <span data-i18n="work.collection">ملفات تجميعية</span><em class="count" data-count="collection"></em>
+        <button class="filter" type="button" data-filter="image" role="tab" aria-selected="false">
+          <span data-i18n="work.image">تصاميم</span><em class="count" data-count="image"></em>
+        </button>
+        <button class="filter" type="button" data-filter="video" role="tab" aria-selected="false">
+          <span data-i18n="work.video">فيديو</span><em class="count" data-count="video"></em>
         </button>
         <button class="filter" type="button" data-filter="web" role="tab" aria-selected="false">
           <span data-i18n="work.web">مواقع ومتاجر</span><em class="count" data-count="web"></em>
@@ -221,32 +258,32 @@
       <div class="work-grid" id="workGrid"></div>
 
       <div class="work-more">
-        <button class="btn btn-ghost" type="button" id="loadMore" data-i18n="work.more">عرض المزيد</button>
+        <button class="btn btn-ghost magnetic" type="button" id="loadMore" data-i18n="work.more">عرض المزيد</button>
       </div>
     </section>
 
     <!-- EXPERIENCE & EDUCATION -->
     <section class="section" id="experience">
-      <div class="section-head reveal">
-        <span class="kicker" data-i18n="exp.kicker">04 — الخبرات والتعليم</span>
-        <h2 data-i18n="exp.title">رحلتي المهنية</h2>
+      <div class="section-head">
+        <span class="kicker" data-anim data-i18n="exp.kicker">05 — الخبرات والتعليم</span>
+        <h2 data-i18n="exp.title" data-split>رحلتي المهنية</h2>
       </div>
       <ol class="timeline">
-        <li class="timeline-item reveal">
+        <li class="timeline-item" data-anim>
           <span class="timeline-date">2020 — <span data-i18n="exp.present">الآن</span></span>
           <div>
             <h3 data-i18n="exp.role">مصمم جرافيك وموشن جرافيك</h3>
-            <p class="timeline-place" data-i18n="exp.company">عمل حر</p>
+            <p class="timeline-place" data-i18n="exp.company">عمل حر — بابلو</p>
             <ul>
               <li data-i18n="exp.item1">تنفيذ تصاميم جرافيكية إبداعية متنوعة لعدة عملاء</li>
               <li data-i18n="exp.item2">إنشاء فيديوهات موشن جرافيك إعلانية</li>
               <li data-i18n="exp.item3">استخدام أدوات الذكاء الاصطناعي لتحسين جودة وسرعة العمل</li>
               <li data-i18n="exp.item4">تنفيذ مشاريع متنوعة لمنصات التواصل الاجتماعي</li>
-              <li data-i18n="exp.item5">المشاركة في تصميم وتطوير مواقع ومتاجر إلكترونية</li>
+              <li data-i18n="exp.item5">تصميم وإنشاء مواقع ومتاجر إلكترونية</li>
             </ul>
           </div>
         </li>
-        <li class="timeline-item reveal">
+        <li class="timeline-item" data-anim>
           <span class="timeline-date" data-i18n="edu.duration">4 سنوات</span>
           <div>
             <h3 data-i18n="edu.university">جامعة صنعاء</h3>
@@ -261,35 +298,35 @@
 
     <!-- CONTACT -->
     <section class="section contact" id="contact">
-      <div class="contact-panel reveal">
-        <span class="kicker" data-i18n="contact.kicker">05 — تواصل</span>
-        <h2 class="contact-title" data-i18n="contact.title">لنصنع شيئًا مميزًا معًا</h2>
-        <p class="section-sub" data-i18n="contact.sub">عندك فكرة مشروع؟ أرسل لي رسالة وسأرد عليك في أقرب وقت.</p>
-        <a class="contact-mail" href="mailto:essamalhttami9@gmail.com">essamalhttami9@gmail.com</a>
+      <div class="contact-panel" id="contactPanel">
+        <span class="kicker" data-anim data-i18n="contact.kicker">06 — تواصل</span>
+        <h2 class="contact-title" data-i18n="contact.title" data-split>لنصنع شيئًا مميزًا معًا</h2>
+        <p class="section-sub" data-anim data-i18n="contact.sub">عندك فكرة مشروع؟ أرسل لي رسالة وسأرد عليك في أقرب وقت.</p>
+        <a class="contact-mail" data-anim href="mailto:essamalhttami9@gmail.com">essamalhttami9@gmail.com</a>
 
         <div class="contact-grid">
-          <a class="contact-card" href="https://wa.me/966573730430" target="_blank" rel="noreferrer">
+          <a class="contact-card" data-anim href="https://wa.me/966531098278" target="_blank" rel="noreferrer">
             <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20l1.3-3.9A8 8 0 1 1 8 19l-4 1Z"/><path d="M9 9.5c.3 2 2.5 4.3 5 5l1.2-1.2 2 1-.6 1.6c-3.8.4-8.6-4.3-8.2-8.2L10 7l1 2-1 1"/></svg>
             <span>
               <strong>WhatsApp</strong>
-              <em dir="ltr">0573730430</em>
+              <em dir="ltr">+966 53 109 8278</em>
             </span>
           </a>
-          <a class="contact-card" href="tel:+966573730430">
+          <a class="contact-card" data-anim href="tel:+966531098278">
             <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2Z"/></svg>
             <span>
               <strong data-i18n="contact.phone">الجوال</strong>
-              <em dir="ltr">0573730430</em>
+              <em dir="ltr">+966 53 109 8278</em>
             </span>
           </a>
-          <a class="contact-card" href="https://www.behance.net/Essam_ALhttami" target="_blank" rel="noreferrer">
+          <a class="contact-card" data-anim href="https://www.behance.net/Essam_ALhttami" target="_blank" rel="noreferrer">
             <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 6h5a3 3 0 0 1 0 6H3V6Zm0 6h5.5a3 3 0 0 1 0 6H3v-6ZM14 8h6M13.5 14.5h7a3.5 3.5 0 1 0-1 2.5"/></svg>
             <span>
               <strong>Behance</strong>
               <em dir="ltr">@Essam_ALhttami</em>
             </span>
           </a>
-          <a class="contact-card" href="assets/Essam-Hamood-Abdo-CV.pdf" download="Essam-Hamood-Abdo-CV.pdf">
+          <a class="contact-card" data-anim href="assets/Essam-Hamood-Abdo-CV.pdf" download="Essam-Hamood-Abdo-CV.pdf">
             <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8l-5-5Z"/><path d="M14 3v5h5M12 11v6m0 0 2.5-2.5M12 17l-2.5-2.5"/></svg>
             <span>
               <strong data-i18n="contact.cv">السيرة الذاتية</strong>
@@ -302,7 +339,7 @@
   </main>
 
   <footer class="site-footer">
-    <span>© <span id="year">2026</span> <span data-i18n="brand">عصام حمود عبده</span></span>
+    <span class="footer-brand"><span class="footer-mark pablo-mask"></span>© <span id="year">2026</span> <span data-i18n="brand">عصام حمود عبده</span></span>
     <a href="#hero" class="to-top" data-i18n="footer.top">العودة للأعلى ↑</a>
   </footer>
 
@@ -315,7 +352,7 @@
       <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m15 6-6 6 6 6"/></svg>
     </button>
     <figure class="lb-figure">
-      <div class="lb-media"><img id="lbImg" alt="" /></div>
+      <div class="lb-media" id="lbMedia"></div>
       <figcaption>
         <div>
           <span class="lb-cat" id="lbCat"></span>
@@ -332,6 +369,9 @@
     </button>
   </div>
 
+  <script src="assets/vendor/gsap.min.js"></script>
+  <script src="assets/vendor/ScrollTrigger.min.js"></script>
+  <script src="assets/vendor/lenis.min.js"></script>
   <script src="script.js"></script>
 </body>
 </html>
