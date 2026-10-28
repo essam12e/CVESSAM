@@ -29,12 +29,50 @@
   </script>
 </head>
 <body>
-  <!-- PRELOADER -->
+  <!-- PRELOADER: a tiny motion-graphics "render" -->
   <div class="loader" id="loader" aria-hidden="true">
-    <div class="loader-inner">
-      <span class="loader-logo pablo-mask"></span>
-      <span class="loader-bar"><i id="loaderBar"></i></span>
+    <div class="ld-grid"><i></i><i></i><i></i><i></i><i></i><i></i></div>
+
+    <div class="ld-hud ld-hud-top">
+      <span class="ld-rec"><b></b>REC</span>
+      <span>PABLO — MOTION REEL</span>
+      <span>1920 × 1080 · 24 FPS</span>
     </div>
+
+    <div class="ld-stage">
+      <svg class="ld-path" viewBox="0 0 600 300" preserveAspectRatio="none">
+        <path id="ldCurve" d="M20 250 C 160 250, 180 40, 300 40 S 440 250, 580 250" />
+      </svg>
+      <span class="ld-shape ld-circle"></span>
+      <span class="ld-shape ld-square"></span>
+      <span class="ld-shape ld-tri"></span>
+      <span class="ld-shape ld-ring"></span>
+      <div class="ld-words">
+        <span>MOTION</span>
+        <span>DESIGN</span>
+        <span>ANIMATE</span>
+        <span>بابلو</span>
+      </div>
+      <span class="loader-logo pablo-mask"></span>
+    </div>
+
+    <div class="ld-timeline">
+      <div class="ld-meta">
+        <span class="ld-timecode" id="ldTimecode">00:00:00:00</span>
+        <span class="ld-percent"><b id="ldPercent">0</b>%</span>
+      </div>
+      <div class="ld-track">
+        <span class="ld-ticks"></span>
+        <span class="ld-key" style="--at: 8%"></span>
+        <span class="ld-key" style="--at: 30%"></span>
+        <span class="ld-key" style="--at: 52%"></span>
+        <span class="ld-key" style="--at: 74%"></span>
+        <span class="ld-key" style="--at: 94%"></span>
+        <span class="ld-playhead" id="ldPlayhead"></span>
+      </div>
+    </div>
+
+    <div class="ld-wipes"><i></i><i></i><i></i></div>
   </div>
 
   <div class="cursor" id="cursor" aria-hidden="true"><span id="cursorLabel"></span></div>
@@ -126,6 +164,14 @@
           <span class="caption-sep">/</span>
           <span>PABLO</span>
         </div>
+      </div>
+
+      <div class="hero-shapes" aria-hidden="true">
+        <span class="hs hs-ring" data-depth="0.6"></span>
+        <span class="hs hs-plus" data-depth="1.2"></span>
+        <span class="hs hs-square" data-depth="0.9"></span>
+        <span class="hs hs-dot" data-depth="1.6"></span>
+        <svg class="hs hs-curve" data-depth="0.4" viewBox="0 0 200 80"><path d="M4 70 C 60 70, 70 10, 100 10 S 150 70, 196 70"/><circle cx="4" cy="70" r="4"/><circle cx="100" cy="10" r="4"/><circle cx="196" cy="70" r="4"/></svg>
       </div>
 
       <a class="scroll-cue" href="#about" aria-label="Scroll">

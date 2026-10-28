@@ -702,7 +702,8 @@ function heroIntro() {
     .fromTo("[data-hero]", { y: 40, autoAlpha: 0 }, { y: 0, autoAlpha: 1, duration: 1.1, stagger: 0.08 }, 0.55)
     .fromTo(".site-header", { y: -40, autoAlpha: 0 }, { y: 0, autoAlpha: 1, duration: 1 }, 0.6)
     .fromTo(".scroll-cue", { autoAlpha: 0 }, { autoAlpha: 1, duration: 1 }, 1.2)
-    .add(() => $$(".hero-stats [data-count-to]").forEach(countUp), 0.9);
+    .add(() => $$(".hero-stats [data-count-to]").forEach(countUp), 0.9)
+    .add(revealHeroShapes(), 0.8);
   return tl;
 }
 
@@ -764,19 +765,106 @@ function initScrollAnimations() {
   });
 }
 
-/* ---------- Loader ---------- */
+/* ---------- Hero motion accents ---------- */
+function initHeroShapes() {
+  const shapes = [...$$(".hs")];
+  gsap.set(shapes, { autoAlpha: 0, scale: 0 });
+  shapes.forEach((el, i) => {
+    gsap.to(el, { y: i % 2 ? 18 : -18, rotate: i % 2 ? -25 : 25, duration: 3 + i * 0.6, ease: "sine.inOut", yoyo: true, repeat: -1 });
+  });
+  if (!finePointer) return;
+  const movers = shapes.map((el) => ({
+    depth: Number(el.dataset.depth) || 1,
+    x: gsap.quickTo(el, "x", { duration: 1, ease: "power3" })
+  }));
+  addEventListener("pointermove", (e) => {
+    const dx = (e.clientX / innerWidth - 0.5) * 60;
+    movers.forEach((m) => m.x(dx * m.depth));
+  });
+}
+
+function revealHeroShapes() {
+  return gsap.to(".hs", { autoAlpha: 1, scale: 1, duration: 1.2, ease: "elastic.out(1, 0.5)", stagger: 0.08 });
+}
+
+/* ---------- Loader: a short motion-graphics "render" ---------- */
+function loaderTimeline() {
+  const FPS = 24;
+  const RENDER = 2.9;
+  const keys = [...$$(".ld-key")];
+  const timecode = $("#ldTimecode");
+  const percent = $("#ldPercent");
+  const words = $$(".ld-words span");
+  const tl = gsap.timeline({ defaults: { ease: "power3.out" } });
+
+  // Comp setup: guides draw in, HUD and timeline appear.
+  tl.fromTo(".ld-grid i:nth-child(-n+3)", { scaleY: 0 }, { scaleY: 1, duration: 0.8, stagger: 0.06, ease: "expo.inOut" }, 0)
+    .fromTo(".ld-grid i:nth-child(n+4)", { scaleX: 0 }, { scaleX: 1, duration: 0.8, stagger: 0.06, ease: "expo.inOut" }, 0.05)
+    .fromTo([".ld-hud", ".ld-timeline"], { autoAlpha: 0, y: 10 }, { autoAlpha: 1, y: 0, duration: 0.5 }, 0.1)
+    .fromTo(".ld-path", { autoAlpha: 0 }, { autoAlpha: 1, duration: 0.4 }, 0.2);
+
+  // Playhead scrubs the timeline; timecode, percent and keyframes follow it.
+  const head = { p: 0 };
+  tl.to(head, {
+    p: 1,
+    duration: RENDER,
+    ease: "none",
+    onUpdate: () => {
+      const frames = Math.round(head.p * RENDER * FPS);
+      timecode.textContent = `00:00:${pad(Math.floor(frames / FPS))}:${pad(frames % FPS)}`;
+      percent.textContent = Math.round(head.p * 100);
+      $("#ldPlayhead").style.left = `${head.p * 100}%`;
+      keys.forEach((k) => k.classList.toggle("is-hit", head.p * 100 >= parseFloat(k.style.getPropertyValue("--at"))));
+    }
+  }, 0);
+
+  // Shapes: the circle rides the bezier with squash & stretch, the square drops and bounces, the triangle spins in.
+  tl.fromTo(".ld-circle", { x: -280, y: 100, scale: 0, autoAlpha: 1 }, { scale: 1, duration: 0.3, ease: "back.out(3)" }, 0.25)
+    .to(".ld-circle", {
+      keyframes: [
+        { x: -150, y: -10, scaleX: 1.35, scaleY: 0.75, duration: 0.22, ease: "power1.in" },
+        { x: 0, y: -110, scaleX: 0.85, scaleY: 1.2, duration: 0.22, ease: "power1.out" },
+        { x: 150, y: -10, scaleX: 1.35, scaleY: 0.75, duration: 0.22, ease: "power1.in" },
+        { x: 280, y: 100, scaleX: 1, scaleY: 1, duration: 0.22, ease: "power1.out" }
+      ]
+    }, 0.5)
+    .fromTo(".ld-square", { y: -320, x: -90, rotate: -90, autoAlpha: 0 }, { y: 60, rotate: 180, autoAlpha: 1, duration: 0.8, ease: "bounce.out" }, 0.35)
+    .fromTo(".ld-tri", { x: 110, y: 40, scale: 0, rotate: -240, autoAlpha: 1 }, { scale: 1, rotate: 0, duration: 0.7, ease: "back.out(2.2)" }, 0.55)
+    // Everything snaps to the centre and pops as a shockwave.
+    .to([".ld-circle", ".ld-square", ".ld-tri"], { x: 0, y: 0, rotate: 0, scale: 0.4, duration: 0.35, ease: "power3.in", stagger: 0.03 }, 1.4)
+    .to([".ld-circle", ".ld-square", ".ld-tri"], { scale: 0, duration: 0.15, ease: "power2.in" }, 1.78)
+    .fromTo(".ld-ring", { scale: 0, autoAlpha: 1 }, { scale: 4, autoAlpha: 0, duration: 0.8, ease: "expo.out" }, 1.8)
+    .to(".ld-path", { autoAlpha: 0, duration: 0.3 }, 1.6);
+
+  // Kinetic type: each word slams in and out.
+  words.forEach((word, i) => {
+    const at = 1.85 + i * 0.2;
+    tl.fromTo(word, { autoAlpha: 0, yPercent: 70, skewY: 10, scale: 1.2 }, { autoAlpha: 1, yPercent: 0, skewY: 0, scale: 1, duration: 0.14, ease: "power4.out" }, at)
+      .to(word, { autoAlpha: 0, yPercent: -60, skewY: -6, duration: 0.1, ease: "power4.in" }, at + 0.14);
+  });
+
+  // Logo reveal with a horizontal wipe.
+  tl.fromTo(".loader-logo", { autoAlpha: 1, clipPath: "inset(0% 100% 0% 0%)", scale: 1.15 }, { clipPath: "inset(0% 0% 0% 0%)", scale: 1, duration: 0.6, ease: "expo.out" }, 2.65);
+
+  // Colour wipes cover the comp, then lift away to reveal the site.
+  const wipes = [...$$(".ld-wipes i")];
+  gsap.set(wipes, { y: 0, yPercent: 101 }); // replace the CSS offset so GSAP owns the transform
+  tl.to(wipes, { yPercent: 0, duration: 0.7, stagger: 0.09, ease: "expo.inOut" }, 3.25)
+    .set(".loader > :not(.ld-wipes)", { autoAlpha: 0 })
+    .set("#loader", { backgroundColor: "transparent", pointerEvents: "none" })
+    .to(wipes.reverse(), { yPercent: -101, duration: 0.8, stagger: 0.09, ease: "expo.inOut" }, "+=0.02");
+
+  return tl;
+}
+
 function finishLoader() {
   const loader = $("#loader");
   if (!animate) {
     loader.remove();
     return;
   }
-  gsap.timeline()
-    .to("#loaderBar", { scaleX: 1, duration: 0.9, ease: "power2.inOut" })
-    .to(".loader-logo", { yPercent: -30, autoAlpha: 0, duration: 0.5, ease: "power3.in" }, "+=0.1")
-    .to(loader, { clipPath: "inset(0% 0% 100% 0%)", duration: 0.9, ease: "expo.inOut" }, "-=0.2")
-    .add(heroIntro(), "-=0.55")
-    .add(() => loader.remove());
+  const tl = loaderTimeline().timeScale(1.3);
+  tl.add(heroIntro().timeScale(1 / 1.3), "-=0.9").eventCallback("onComplete", () => loader.remove());
 }
 
 /* ---------- Init ---------- */
@@ -791,6 +879,7 @@ if (animate) {
     gsap.set("[data-hero]", { autoAlpha: 0 });
     gsap.set("#portrait", { clipPath: "inset(100% 0% 0% 0% round 28px)" });
     initLenis();
+    initHeroShapes();
     initScrollAnimations();
     initMagnetic();
   } catch (err) {
@@ -798,7 +887,6 @@ if (animate) {
   }
 }
 
-// Start once the page has loaded, but never keep visitors waiting on slow images.
 let loaderStarted = false;
 function startOnce() {
   if (loaderStarted) return;
@@ -810,6 +898,7 @@ function startOnce() {
     $("#loader")?.remove();
   }
 }
-if (document.readyState === "complete") startOnce();
+// The intro only needs the fonts, not every image on the page.
+if (document.fonts?.ready) document.fonts.ready.then(startOnce);
 else addEventListener("load", startOnce, { once: true });
-setTimeout(startOnce, 2500);
+setTimeout(startOnce, 900);
