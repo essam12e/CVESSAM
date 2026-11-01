@@ -9,6 +9,8 @@ const drivePreview = (id) => `https://drive.google.com/file/d/${id}/preview`;
 /* ---------- Portfolio data (Google Drive file ids) ---------- */
 const motionWorks = [
   ["1ezRal0ioC-aDM--e6ONM9kz0--oSj37s", "فيلم علامة بابلو", "PABLO Brand Film"],
+  ["18l8CDq1ba6KXY-xP9zZ25jBcxLsDjJAb", "إعلان سهم", "Sahm Ad"],
+  ["1ZbMPIQoraQP0nJF25PkGqJYkVl_sfmTz", "وصلة الشمال", "Waslat Al-Shamal"],
   ["1QabtYad80IpmQ7lPJr60LBFcjgEjNIBy", "إعلان بابلو موشن", "Pablo Motion Ad"],
   ["1AkgZm5JMLQI70mBAbN0enJYFGXcGI15l", "إعلان بابلو", "Pablo Ad"],
   ["1RA4Ecf0urIoRCrkeZBQy31qt2_6K31qT", "ماجيك ستور", "Magic Store"],
@@ -37,6 +39,7 @@ const motionWorks = [
 ];
 
 const imageIds = [
+  "1xTWKt6uSJnAWX6SWa3phgrbNPftAyx56",
   "1w8V5RKlrS6uwrXCQqIcJCYP3uVz8WARh",
   "15ClUJMLvVC9ZMGRYTgXOzlkerSkZDWCD",
   "1IS5jkkJqZ0zPZSXmTnhd8YvrH257GR5y",
