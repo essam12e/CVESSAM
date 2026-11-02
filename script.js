@@ -88,10 +88,12 @@ const videoIds = [
 ];
 
 // "مختبر بابلو": websites & tools essam designed and built. Shown above the gallery.
-// shot = live screenshot (made by the visitor's browser), og = the site's own preview image as fallback.
+// shot = phone screenshot in assets/lab (refreshed weekly by .github/workflows/lab-screenshots.yml),
+// og = the site's own preview image, used only if the screenshot is missing.
 const labProjects = [
   {
     url: "https://j-addid.com",
+    shot: "assets/lab/jaddid.jpg",
     og: "https://j-addid.com/brand/jaddid-og.png",
     name: { ar: "جَدِّد", en: "Jaddid" },
     desc: {
@@ -101,6 +103,7 @@ const labProjects = [
   },
   {
     url: "https://trend-box.online",
+    shot: "assets/lab/trendbox.jpg",
     og: "https://trend-box.online/trend-box-logo.png",
     name: { ar: "ترند بوكس", en: "Trend Box" },
     desc: {
@@ -110,6 +113,7 @@ const labProjects = [
   },
   {
     url: "https://atbha.vercel.app/",
+    shot: "assets/lab/ratbha.jpg",
     og: "https://ratbha.vercel.app/logo.png",
     name: { ar: "رتّبها", en: "Ratbha" },
     desc: {
@@ -119,6 +123,7 @@ const labProjects = [
   },
   {
     url: "https://sher-nine.vercel.app/",
+    shot: "assets/lab/image-links.jpg",
     og: "",
     name: { ar: "نطاق | روابط الصور", en: "Nitaaq Image Links" },
     desc: {
@@ -128,6 +133,7 @@ const labProjects = [
   },
   {
     url: "https://nitaaq-save-numbers.vercel.app/",
+    shot: "assets/lab/save-numbers.jpg",
     og: "https://nitaaq-save-numbers.vercel.app/og-image.png",
     name: { ar: "نطاق | حفظ الأرقام", en: "Nitaaq Save Numbers" },
     desc: {
@@ -137,6 +143,7 @@ const labProjects = [
   },
   {
     url: "https://nitaaqsearch.vercel.app/",
+    shot: "assets/lab/public-search.jpg",
     og: "https://nitaaq-public-search.vercel.app/brand/social-preview.png",
     name: { ar: "نطاق | الباحث العام", en: "Nitaaq Public Search" },
     desc: {
@@ -146,6 +153,7 @@ const labProjects = [
   },
   {
     url: "https://nitaaq-map.vercel.app/",
+    shot: "assets/lab/nitaaq-map.jpg",
     og: "https://nitaaq-map.vercel.app/og-image.png",
     name: { ar: "نطاق ماب", en: "Nitaaq Map" },
     desc: {
@@ -626,9 +634,6 @@ function initLatestAlert() {
 
 const labGrid = $("#labGrid");
 const hostOf = (url) => new URL(url).hostname.replace(/^www\./, "");
-// Phone-sized live screenshot so it fits the vertical (reels) cards.
-const liveShot = (url, bust = "") =>
-  `https://s0.wp.com/mshots/v1/${encodeURIComponent(url)}?vpw=430&vph=932&w=430&h=932${bust}`;
 
 function labCard(p, i) {
   const a = document.createElement("a");
@@ -656,18 +661,13 @@ function labCard(p, i) {
   fallback.prepend(mono);
   media.append(fallback);
 
-  // Live screenshot: the service returns a small placeholder while it renders, so retry a few times.
   const shot = document.createElement("img");
   shot.className = "lab-shot";
   shot.alt = p.name[lang];
   shot.loading = "lazy";
-  shot.referrerPolicy = "no-referrer";
-  let tries = 0;
-  shot.addEventListener("load", () => {
-    if (shot.naturalWidth >= 420) return a.classList.add("has-shot");
-    if (++tries <= 4) setTimeout(() => (shot.src = liveShot(p.url, `&r=${tries}`)), 4000 * tries);
-  });
-  shot.src = liveShot(p.url);
+  shot.addEventListener("load", () => a.classList.add("has-shot"));
+  shot.addEventListener("error", () => shot.remove());
+  shot.src = p.shot;
   media.append(shot);
 
   const browser = document.createElement("span");
