@@ -812,7 +812,7 @@ h2 {
 
 .work-grid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(5, 1fr);
   gap: 16px;
 }
 
@@ -838,7 +838,7 @@ h2 {
 .work-media {
   position: relative;
   display: block;
-  aspect-ratio: 4 / 5;
+  aspect-ratio: 9 / 16;
   overflow: hidden;
   background:
     linear-gradient(110deg, transparent 30%, color-mix(in srgb, var(--text) 6%, transparent) 50%, transparent 70%) 0 0 / 200% 100%,
@@ -2273,4 +2273,17 @@ h2 {
 }
 @media (max-width: 640px) {
   .lab-grid { grid-template-columns: 1fr; gap: 14px; }
+}
+
+/* Vertical (reels) cards: landscape website shots show from the top. */
+.cat-web .work-media img { object-position: top center; }
+@media (min-width: 1100px) and (max-width: 1300px) {
+  .work-grid { grid-template-columns: repeat(4, 1fr); }
+}
+@media (max-width: 1100px) and (min-width: 761px) {
+  .latest-row { grid-template-columns: repeat(4, 1fr); }
+  .latest-row .work-card:nth-child(5) { display: none; }
+}
+@media (max-width: 760px) {
+  .latest-row .work-card { flex: 0 0 46%; }
 }

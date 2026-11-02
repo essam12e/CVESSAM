@@ -1,6 +1,6 @@
 const BIRTH_DATE = new Date(1999, 7, 28);
 const CAREER_START = 2020;
-const PAGE_SIZE = 12;
+const PAGE_SIZE = 15;
 
 const driveThumb = (id, size = 900) => `https://drive.google.com/thumbnail?id=${id}&sz=w${size}`;
 const driveView = (id) => `https://drive.google.com/file/d/${id}/view`;
