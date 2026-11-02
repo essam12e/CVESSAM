@@ -104,7 +104,7 @@
       <a href="#about" data-i18n="nav.about">نبذة</a>
       <a href="#pablo" data-i18n="nav.pablo">بابلو</a>
       <a href="#services" data-i18n="nav.services">الخدمات</a>
-      <a href="#work" data-i18n="nav.work">الأعمال</a>
+      <a href="#latest" class="nav-latest"><span data-i18n="nav.work">الأعمال</span><b class="alert-dot js-latest-dot" hidden></b></a>
       <a href="#experience" data-i18n="nav.experience">الخبرات</a>
       <a href="#contact" data-i18n="nav.contact">تواصل</a>
     </nav>
@@ -117,7 +117,7 @@
       <button class="icon-btn lang-btn" id="langToggle" type="button" aria-label="Toggle language">EN</button>
       <a class="header-cta magnetic" href="#contact" data-i18n="nav.hire">اطلب تصميمك</a>
       <button class="icon-btn menu-btn" id="menuToggle" type="button" aria-label="Menu" aria-expanded="false">
-        <span></span><span></span>
+        <span></span><span></span><i class="menu-alert js-latest-flag" hidden></i>
       </button>
     </div>
   </header>
@@ -294,6 +294,14 @@
         <span class="kicker" data-anim data-i18n="work.kicker">04 — معرض الأعمال</span>
         <h2 data-i18n="work.title" data-split>أعمال مختارة</h2>
         <p class="section-sub" data-anim data-i18n="work.sub">اضغط على أي عمل لعرضه بحجم كامل أو تشغيله.</p>
+      </div>
+
+      <div class="latest" id="latest" data-anim>
+        <div class="latest-head">
+          <h3><span class="live-dot" aria-hidden="true"></span><span data-i18n="latest.title">جديد أعمالنا</span><b class="alert-dot js-latest-dot" hidden></b></h3>
+          <p data-i18n="latest.sub">آخر ما أنجزناه، يتحدّث تلقائيًا مع كل عمل جديد.</p>
+        </div>
+        <div class="latest-row" id="latestRow"></div>
       </div>
 
       <div class="filters" role="tablist" id="workFilters" data-anim>

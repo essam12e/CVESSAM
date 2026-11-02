@@ -7,6 +7,17 @@ const driveView = (id) => `https://drive.google.com/file/d/${id}/view`;
 const drivePreview = (id) => `https://drive.google.com/file/d/${id}/preview`;
 
 /* ---------- Portfolio data (Google Drive file ids) ---------- */
+// "جديد أعمالنا": the 5 newest works, newest first. Put a new work's Drive ID at the
+// top of this list and the oldest one drops off automatically (only the first 5 show).
+const latestIds = [
+  "1Hk6m9u3-_Utli4J_jgQuoDWZb28avjP3",
+  "18YcV2tdgeSH695qUvJZUMLOnnonq9lVw",
+  "1McGzLnGknYSVHuXI45MENj45xcf15NiL",
+  "18l8CDq1ba6KXY-xP9zZ25jBcxLsDjJAb",
+  "1ZbMPIQoraQP0nJF25PkGqJYkVl_sfmTz"
+];
+const LATEST_COUNT = 5;
+
 const motionWorks = [
   ["1ezRal0ioC-aDM--e6ONM9kz0--oSj37s", "فيلم علامة بابلو", "PABLO Brand Film"],
   ["1Hk6m9u3-_Utli4J_jgQuoDWZb28avjP3", "حفلة شاي يوم التأسيس", "Founding Day Tea Party"],
@@ -85,6 +96,7 @@ const websites = [
 const pad = (n) => String(n).padStart(2, "0");
 
 const motion = motionWorks.map(([id, ar, en]) => ({
+  id,
   category: "motion",
   title: { ar, en },
   thumb: driveThumb(id),
@@ -93,6 +105,7 @@ const motion = motionWorks.map(([id, ar, en]) => ({
 }));
 
 const images = imageIds.map((id, i) => ({
+  id,
   category: "image",
   title: { ar: `تصميم ${pad(i + 1)}`, en: `Design ${pad(i + 1)}` },
   thumb: driveThumb(id),
@@ -101,6 +114,7 @@ const images = imageIds.map((id, i) => ({
 }));
 
 const videos = videoIds.map((id, i) => ({
+  id,
   category: "video",
   title: { ar: `فيديو ${pad(i + 1)}`, en: `Video ${pad(i + 1)}` },
   thumb: driveThumb(id),
@@ -125,6 +139,11 @@ function interleave(...lists) {
 }
 
 const works = interleave(motion, images, sites, videos);
+
+const latest = latestIds
+  .map((id) => works.find((w) => w.id === id))
+  .filter(Boolean)
+  .slice(0, LATEST_COUNT);
 
 const translations = {
   ar: {
@@ -176,6 +195,9 @@ const translations = {
     "services.s4Title": "إنشاء المتاجر الإلكترونية",
     "services.s4Desc": "تجهيز وإدارة المتاجر على سلة وزد وترنديول، من التصميم إلى رفع المنتجات.",
     "work.kicker": "04 — معرض الأعمال",
+    "latest.title": "جديد أعمالنا",
+    "latest.sub": "آخر ما أنجزناه، يتحدّث تلقائيًا مع كل عمل جديد.",
+    "latest.new": "جديد",
     "work.title": "أعمال مختارة",
     "work.sub": "اضغط على أي عمل لعرضه بحجم كامل أو تشغيله.",
     "work.all": "الكل",
@@ -259,6 +281,9 @@ const translations = {
     "services.s4Title": "E-commerce Stores",
     "services.s4Desc": "Building and managing stores on Salla, Zid and Trendyol, from design to product listings.",
     "work.kicker": "04 — Portfolio",
+    "latest.title": "Latest work",
+    "latest.sub": "Our newest pieces, updated with every new release.",
+    "latest.new": "New",
     "work.title": "Selected work",
     "work.sub": "Click any piece to view it full size or play it.",
     "work.all": "All",
@@ -465,7 +490,56 @@ function workCard(work, index, list) {
   return card;
 }
 
+const latestRow = $("#latestRow");
+const SEEN_KEY = "pablo-latest-seen";
+
+function renderLatest() {
+  if (!latestRow) return;
+  latestRow.replaceChildren(
+    ...latest.map((w, i) => {
+      const card = workCard(w, i, latest);
+      if (i === 0) {
+        const badge = document.createElement("span");
+        badge.className = "latest-badge";
+        badge.textContent = translations[lang]["latest.new"];
+        card.append(badge);
+      }
+      return card;
+    })
+  );
+}
+
+// Red notification dot: shows how many of the latest works this visitor hasn't seen yet.
+function initLatestAlert() {
+  const section = $("#latest");
+  if (!section || !latest.length) return;
+  let seen = [];
+  try { seen = JSON.parse(storageGet(SEEN_KEY) || "[]"); } catch (e) { seen = []; }
+  const unseen = latest.filter((w) => !seen.includes(w.id)).length;
+  const dots = $$(".js-latest-dot");
+  dots.forEach((d) => {
+    d.textContent = unseen;
+    d.hidden = unseen === 0;
+  });
+  $$(".js-latest-flag").forEach((f) => (f.hidden = unseen === 0));
+  const markSeen = () => {
+    storageSet(SEEN_KEY, JSON.stringify(latest.map((w) => w.id)));
+    dots.forEach((d) => d.classList.add("is-cleared"));
+    $$(".js-latest-flag").forEach((f) => (f.hidden = true));
+  };
+  if ("IntersectionObserver" in window) {
+    const io = new IntersectionObserver((entries) => {
+      if (entries.some((e) => e.isIntersecting)) {
+        setTimeout(markSeen, 1500);
+        io.disconnect();
+      }
+    }, { threshold: 0.4 });
+    io.observe(section);
+  }
+}
+
 function renderWork(animateIn = true, from = 0) {
+  renderLatest();
   const list = filteredWorks();
   const shown = list.slice(0, visibleCount);
   if (from === 0) grid.replaceChildren(...shown.map((w, i) => workCard(w, i, list)));
@@ -507,6 +581,8 @@ $$(".filter").forEach((btn) => {
     }
   });
 });
+
+initLatestAlert();
 
 loadMoreBtn.addEventListener("click", () => {
   const from = grid.children.length;
