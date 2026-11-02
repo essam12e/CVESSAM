@@ -269,6 +269,9 @@ const translations = {
     "lab.title": "منصات صنعتها من الفكرة للإطلاق",
     "lab.sub": "مواقع وأدوات رقمية صمّمتها وبنيتها بالكامل. اضغط على أي مشروع لزيارته مباشرة.",
     "lab.visit": "زيارة الموقع",
+    "lab.panel": "مواقعي ومنصاتي",
+    "lab.tag": "موقع / منصة",
+    "lab.hint": "اسحب لتشاهد الكل، واضغط لزيارة الموقع.",
     "latest.title": "جديد أعمالنا",
     "latest.sub": "آخر ما أنجزناه، يتحدّث تلقائيًا مع كل عمل جديد.",
     "latest.new": "جديد",
@@ -360,6 +363,9 @@ const translations = {
     "lab.title": "Products I built, idea to launch",
     "lab.sub": "Websites and digital tools I designed and built end to end. Tap any project to visit it.",
     "lab.visit": "Visit site",
+    "lab.panel": "My websites & platforms",
+    "lab.tag": "Website / platform",
+    "lab.hint": "Swipe to see them all, tap to visit.",
     "latest.title": "Latest work",
     "latest.sub": "Our newest pieces, updated with every new release.",
     "latest.new": "New",
@@ -620,8 +626,9 @@ function initLatestAlert() {
 
 const labGrid = $("#labGrid");
 const hostOf = (url) => new URL(url).hostname.replace(/^www\./, "");
+// Phone-sized live screenshot so it fits the vertical (reels) cards.
 const liveShot = (url, bust = "") =>
-  `https://s0.wp.com/mshots/v1/${encodeURIComponent(url)}?w=1280&h=800${bust}`;
+  `https://s0.wp.com/mshots/v1/${encodeURIComponent(url)}?vpw=430&vph=932&w=430&h=932${bust}`;
 
 function labCard(p, i) {
   const a = document.createElement("a");
@@ -657,7 +664,7 @@ function labCard(p, i) {
   shot.referrerPolicy = "no-referrer";
   let tries = 0;
   shot.addEventListener("load", () => {
-    if (shot.naturalWidth >= 800) return a.classList.add("has-shot");
+    if (shot.naturalWidth >= 420) return a.classList.add("has-shot");
     if (++tries <= 4) setTimeout(() => (shot.src = liveShot(p.url, `&r=${tries}`)), 4000 * tries);
   });
   shot.src = liveShot(p.url);
@@ -671,17 +678,21 @@ function labCard(p, i) {
   const body = document.createElement("span");
   body.className = "lab-body";
   body.innerHTML = `<span class="lab-num"></span><strong></strong><span class="lab-desc"></span><span class="lab-visit"><span></span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></span>`;
-  body.querySelector(".lab-num").textContent = pad(i + 1);
+  body.querySelector(".lab-num").textContent = translations[lang]["lab.tag"];
   body.querySelector("strong").textContent = p.name[lang];
   body.querySelector(".lab-desc").textContent = p.desc[lang];
   body.querySelector(".lab-visit span").textContent = translations[lang]["lab.visit"];
 
-  a.append(browser, media, body);
+  media.append(browser);
+  a.append(media, body);
   return a;
 }
 
 function renderLab() {
-  if (labGrid) labGrid.replaceChildren(...labProjects.map(labCard));
+  if (!labGrid) return;
+  labGrid.replaceChildren(...labProjects.map(labCard));
+  const count = $("#labCount");
+  if (count) count.textContent = labProjects.length;
 }
 
 function renderWork(animateIn = true, from = 0) {
