@@ -9,6 +9,8 @@ const drivePreview = (id) => `https://drive.google.com/file/d/${id}/preview`;
 /* ---------- Portfolio data (Google Drive file ids) ---------- */
 const motionWorks = [
   ["1ezRal0ioC-aDM--e6ONM9kz0--oSj37s", "فيلم علامة بابلو", "PABLO Brand Film"],
+  ["18YcV2tdgeSH695qUvJZUMLOnnonq9lVw", "جرانولا JH", "JH Granola"],
+  ["1McGzLnGknYSVHuXI45MENj45xcf15NiL", "إعلان سيراز", "Siraz Ad"],
   ["18l8CDq1ba6KXY-xP9zZ25jBcxLsDjJAb", "إعلان سهم", "Sahm Ad"],
   ["1ZbMPIQoraQP0nJF25PkGqJYkVl_sfmTz", "وصلة الشمال", "Waslat Al-Shamal"],
   ["1QabtYad80IpmQ7lPJr60LBFcjgEjNIBy", "إعلان بابلو موشن", "Pablo Motion Ad"],
