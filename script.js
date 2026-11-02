@@ -87,6 +87,74 @@ const videoIds = [
   "1BoZml8Y-710sh0VJ59goE-f26bwVfG-o"
 ];
 
+// "مختبر بابلو": websites & tools essam designed and built. Shown above the gallery.
+// shot = live screenshot (made by the visitor's browser), og = the site's own preview image as fallback.
+const labProjects = [
+  {
+    url: "https://j-addid.com",
+    og: "https://j-addid.com/brand/jaddid-og.png",
+    name: { ar: "جَدِّد", en: "Jaddid" },
+    desc: {
+      ar: "منصة لإدارة اشتراكات المتاجر: تتابع مواعيد التجديد وتجهّز تذكيرات العملاء من لوحة واحدة.",
+      en: "Subscription manager for online stores: track renewals and prepare customer reminders from one dashboard."
+    }
+  },
+  {
+    url: "https://trend-box.online",
+    og: "https://trend-box.online/trend-box-logo.png",
+    name: { ar: "ترند بوكس", en: "Trend Box" },
+    desc: {
+      ar: "منصة أبحاث تسويقية تكشف الإعلانات والترندات وتتابع المنافسين على تيك توك وإنستقرام ويوتيوب.",
+      en: "Marketing research platform for ads, trends and competitor tracking across TikTok, Instagram and YouTube."
+    }
+  },
+  {
+    url: "https://atbha.vercel.app/",
+    og: "https://ratbha.vercel.app/logo.png",
+    name: { ar: "رتّبها", en: "Ratbha" },
+    desc: {
+      ar: "برنامج ويندوز يرتّب ملفاتك تلقائيًا حسب النوع أو التاريخ، مع معاينة قبل النقل وتراجع بضغطة.",
+      en: "Windows app that sorts your files by type or date, with a preview before moving and one-click undo."
+    }
+  },
+  {
+    url: "https://sher-nine.vercel.app/",
+    og: "",
+    name: { ar: "نطاق | روابط الصور", en: "Nitaaq Image Links" },
+    desc: {
+      ar: "ابحث عن صورة المنتج وارفعها برابط مباشر وثابت جاهز للصق في سلة وزد وشوبيفاي.",
+      en: "Find a product image and host it on a stable direct link, ready for Salla, Zid and Shopify."
+    }
+  },
+  {
+    url: "https://nitaaq-save-numbers.vercel.app/",
+    og: "https://nitaaq-save-numbers.vercel.app/og-image.png",
+    name: { ar: "نطاق | حفظ الأرقام", en: "Nitaaq Save Numbers" },
+    desc: {
+      ar: "إضافة كروم تستخرج الأرقام من واتساب ويب وتحفظها بأسمائك وتصدّرها VCF أو Excel.",
+      en: "Chrome extension that pulls numbers from WhatsApp Web and exports them as VCF, Excel or CSV."
+    }
+  },
+  {
+    url: "https://nitaaqsearch.vercel.app/",
+    og: "https://nitaaq-public-search.vercel.app/brand/social-preview.png",
+    name: { ar: "نطاق | الباحث العام", en: "Nitaaq Public Search" },
+    desc: {
+      ar: "أداة بحث عربية تجهّز لك روابط البحث في عدة منصات بضغطة، بدون حفظ أي بيانات.",
+      en: "Arabic search tool that builds search links across several platforms in one click, storing nothing."
+    }
+  },
+  {
+    url: "https://nitaaq-map.vercel.app/",
+    og: "https://nitaaq-map.vercel.app/og-image.png",
+    name: { ar: "نطاق ماب", en: "Nitaaq Map" },
+    desc: {
+      ar: "يحوّل موقعك في خرائط جوجل إلى رمز QR مؤقت تشاركه بأمان.",
+      en: "Turns a Google Maps location into a temporary QR code you can share safely."
+    }
+  }
+];
+
 const websites = [
   { title: "Sahel 2031", image: "assets/website-sahel.png", url: "https://sahel2031.twsaa.com/%D9%8A%D9%88%D8%AA%D9%8A%D9%88%D8%A8" },
   { title: "Atyab Alghada", image: "assets/website-atyab.png", url: "https://atyab-sa.com/" },
@@ -195,7 +263,12 @@ const translations = {
     "services.s3Desc": "توظيف أدوات الذكاء الاصطناعي لتسريع الإنتاج ورفع الجودة وابتكار أفكار غير تقليدية.",
     "services.s4Title": "إنشاء المتاجر الإلكترونية",
     "services.s4Desc": "تجهيز وإدارة المتاجر على سلة وزد وترنديول، من التصميم إلى رفع المنتجات.",
-    "work.kicker": "04 — معرض الأعمال",
+    "work.kicker": "05 — معرض الأعمال",
+    "nav.lab": "المختبر",
+    "lab.kicker": "04 — مختبر بابلو",
+    "lab.title": "منصات صنعتها من الفكرة للإطلاق",
+    "lab.sub": "مواقع وأدوات رقمية صمّمتها وبنيتها بالكامل. اضغط على أي مشروع لزيارته مباشرة.",
+    "lab.visit": "زيارة الموقع",
     "latest.title": "جديد أعمالنا",
     "latest.sub": "آخر ما أنجزناه، يتحدّث تلقائيًا مع كل عمل جديد.",
     "latest.new": "جديد",
@@ -211,7 +284,7 @@ const translations = {
     "work.visitSite": "زيارة الموقع",
     "cursor.view": "عرض",
     "cursor.play": "تشغيل",
-    "exp.kicker": "05 — الخبرات والتعليم",
+    "exp.kicker": "06 — الخبرات والتعليم",
     "exp.title": "رحلتي المهنية",
     "exp.present": "الآن",
     "exp.role": "مصمم جرافيك وموشن جرافيك",
@@ -225,7 +298,7 @@ const translations = {
     "edu.university": "جامعة صنعاء",
     "edu.major": "قسم الحاسب الآلي — تخصص جرافكس",
     "edu.cert": "شهادة تخرج من جامعة صنعاء — قسم الحاسب الآلي — تخصص جرافكس",
-    "contact.kicker": "06 — تواصل",
+    "contact.kicker": "07 — تواصل",
     "contact.title": "لنصنع شيئًا مميزًا معًا",
     "contact.sub": "عندك فكرة مشروع؟ أرسل لي رسالة وسأرد عليك في أقرب وقت.",
     "contact.phone": "الجوال",
@@ -281,7 +354,12 @@ const translations = {
     "services.s3Desc": "Using AI tools to speed up production, raise quality and explore unconventional ideas.",
     "services.s4Title": "E-commerce Stores",
     "services.s4Desc": "Building and managing stores on Salla, Zid and Trendyol, from design to product listings.",
-    "work.kicker": "04 — Portfolio",
+    "work.kicker": "05 — Portfolio",
+    "nav.lab": "Lab",
+    "lab.kicker": "04 — PABLO Lab",
+    "lab.title": "Products I built, idea to launch",
+    "lab.sub": "Websites and digital tools I designed and built end to end. Tap any project to visit it.",
+    "lab.visit": "Visit site",
     "latest.title": "Latest work",
     "latest.sub": "Our newest pieces, updated with every new release.",
     "latest.new": "New",
@@ -297,7 +375,7 @@ const translations = {
     "work.visitSite": "Visit website",
     "cursor.view": "View",
     "cursor.play": "Play",
-    "exp.kicker": "05 — Experience & Education",
+    "exp.kicker": "06 — Experience & Education",
     "exp.title": "My journey",
     "exp.present": "Present",
     "exp.role": "Graphic & Motion Graphics Designer",
@@ -311,7 +389,7 @@ const translations = {
     "edu.university": "Sana'a University",
     "edu.major": "Computer Department — Graphics Major",
     "edu.cert": "Graduation certificate, Sana'a University — Computer Department — Graphics Major",
-    "contact.kicker": "06 — Contact",
+    "contact.kicker": "07 — Contact",
     "contact.title": "Let's create something remarkable",
     "contact.sub": "Have a project in mind? Send me a message and I'll get back to you soon.",
     "contact.phone": "Phone",
@@ -403,6 +481,7 @@ function setLanguage(next) {
   storageSet("portfolio-language", lang);
   restartRotator();
   renderWork(false);
+  renderLab();
   if (hasGsap) ScrollTrigger.refresh();
 }
 
@@ -539,6 +618,72 @@ function initLatestAlert() {
   }
 }
 
+const labGrid = $("#labGrid");
+const hostOf = (url) => new URL(url).hostname.replace(/^www\./, "");
+const liveShot = (url, bust = "") =>
+  `https://s0.wp.com/mshots/v1/${encodeURIComponent(url)}?w=1280&h=800${bust}`;
+
+function labCard(p, i) {
+  const a = document.createElement("a");
+  a.className = "lab-card";
+  a.href = p.url;
+  a.target = "_blank";
+  a.rel = "noopener";
+  a.dataset.cursor = "view";
+
+  const media = document.createElement("span");
+  media.className = "lab-media";
+  const fallback = document.createElement("span");
+  fallback.className = "lab-fallback";
+  if (p.og) {
+    const og = document.createElement("img");
+    og.src = p.og;
+    og.alt = "";
+    og.loading = "lazy";
+    og.referrerPolicy = "no-referrer";
+    og.addEventListener("error", () => og.remove());
+    fallback.append(og);
+  }
+  const mono = document.createElement("b");
+  mono.textContent = p.name[lang];
+  fallback.prepend(mono);
+  media.append(fallback);
+
+  // Live screenshot: the service returns a small placeholder while it renders, so retry a few times.
+  const shot = document.createElement("img");
+  shot.className = "lab-shot";
+  shot.alt = p.name[lang];
+  shot.loading = "lazy";
+  shot.referrerPolicy = "no-referrer";
+  let tries = 0;
+  shot.addEventListener("load", () => {
+    if (shot.naturalWidth >= 800) return a.classList.add("has-shot");
+    if (++tries <= 4) setTimeout(() => (shot.src = liveShot(p.url, `&r=${tries}`)), 4000 * tries);
+  });
+  shot.src = liveShot(p.url);
+  media.append(shot);
+
+  const browser = document.createElement("span");
+  browser.className = "lab-bar";
+  browser.innerHTML = "<i></i><i></i><i></i><em></em>";
+  browser.querySelector("em").textContent = hostOf(p.url);
+
+  const body = document.createElement("span");
+  body.className = "lab-body";
+  body.innerHTML = `<span class="lab-num"></span><strong></strong><span class="lab-desc"></span><span class="lab-visit"><span></span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></span>`;
+  body.querySelector(".lab-num").textContent = pad(i + 1);
+  body.querySelector("strong").textContent = p.name[lang];
+  body.querySelector(".lab-desc").textContent = p.desc[lang];
+  body.querySelector(".lab-visit span").textContent = translations[lang]["lab.visit"];
+
+  a.append(browser, media, body);
+  return a;
+}
+
+function renderLab() {
+  if (labGrid) labGrid.replaceChildren(...labProjects.map(labCard));
+}
+
 function renderWork(animateIn = true, from = 0) {
   renderLatest();
   const list = filteredWorks();
@@ -584,6 +729,7 @@ $$(".filter").forEach((btn) => {
 });
 
 initLatestAlert();
+renderLab();
 
 loadMoreBtn.addEventListener("click", () => {
   const from = grid.children.length;
