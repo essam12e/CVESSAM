@@ -10,16 +10,17 @@ const drivePreview = (id) => `https://drive.google.com/file/d/${id}/preview`;
 // "جديد أعمالنا": the 5 newest works, newest first. Put a new work's Drive ID at the
 // top of this list and the oldest one drops off automatically (only the first 5 show).
 const latestIds = [
+  "1Qe1cKjfieC92OWvlRAIaDStfuBpX1-jv",
   "15VHKNBChaDuuQrBxGIbHUTl57neyEYGO",
   "1W-RKbjAY3J_7qh976IYR3zLQ8cDOiNyT",
   "1WrMmNciLNiXYDl0WoxMFu65tCfDH-XGV",
-  "16ZxjUNv6sJQ-_9j8Hqo-WToZVFOKkKxp",
-  "1UJ1Wt9NDT0wRUTM9N00j6mogzEqFLUa5"
+  "16ZxjUNv6sJQ-_9j8Hqo-WToZVFOKkKxp"
 ];
 const LATEST_COUNT = 5;
 
 const motionWorks = [
   ["1ezRal0ioC-aDM--e6ONM9kz0--oSj37s", "فيلم علامة بابلو", "PABLO Brand Film"],
+  ["1Qe1cKjfieC92OWvlRAIaDStfuBpX1-jv", "لمسة ديور", "Lamsat Dior"],
   ["15VHKNBChaDuuQrBxGIbHUTl57neyEYGO", "منح الإمارات الدراسية", "UAE Scholarships"],
   ["1W-RKbjAY3J_7qh976IYR3zLQ8cDOiNyT", "ريل أعمال بابلو", "PABLO Works Reel"],
   ["1WrMmNciLNiXYDl0WoxMFu65tCfDH-XGV", "جوي جارز", "Joy Jars"],
