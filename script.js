@@ -10,16 +10,18 @@ const drivePreview = (id) => `https://drive.google.com/file/d/${id}/preview`;
 // "جديد أعمالنا": the 5 newest works, newest first. Put a new work's Drive ID at the
 // top of this list and the oldest one drops off automatically (only the first 5 show).
 const latestIds = [
+  "1GONRonFWMfbf8svojeunsC1naJT79Wbz",
+  "1ID7sOzQZpvXHKggzngaLnRulkzLvByhl",
   "1cUn9Ss2PchRu4ZK3WPIdrVorhH5vxCBD",
   "1Qe1cKjfieC92OWvlRAIaDStfuBpX1-jv",
-  "15VHKNBChaDuuQrBxGIbHUTl57neyEYGO",
-  "1W-RKbjAY3J_7qh976IYR3zLQ8cDOiNyT",
-  "1WrMmNciLNiXYDl0WoxMFu65tCfDH-XGV"
+  "15VHKNBChaDuuQrBxGIbHUTl57neyEYGO"
 ];
 const LATEST_COUNT = 5;
 
 const motionWorks = [
   ["1ezRal0ioC-aDM--e6ONM9kz0--oSj37s", "فيلم علامة بابلو", "PABLO Brand Film"],
+  ["1GONRonFWMfbf8svojeunsC1naJT79Wbz", "إعلان الطالب الجامعي ١", "UniStudent Ad 1"],
+  ["1ID7sOzQZpvXHKggzngaLnRulkzLvByhl", "إعلان الطالب الجامعي ٢", "UniStudent Ad 2"],
   ["1cUn9Ss2PchRu4ZK3WPIdrVorhH5vxCBD", "أورا للعطور", "AURA Parfums"],
   ["1Qe1cKjfieC92OWvlRAIaDStfuBpX1-jv", "لمسة ديور", "Lamsat Dior"],
   ["15VHKNBChaDuuQrBxGIbHUTl57neyEYGO", "منح الإمارات الدراسية", "UAE Scholarships"],
