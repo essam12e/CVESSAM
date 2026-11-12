@@ -10,16 +10,23 @@ const drivePreview = (id) => `https://drive.google.com/file/d/${id}/preview`;
 // "جديد أعمالنا": the 5 newest works, newest first. Put a new work's Drive ID at the
 // top of this list and the oldest one drops off automatically (only the first 5 show).
 const latestIds = [
-  "1GONRonFWMfbf8svojeunsC1naJT79Wbz",
-  "1ID7sOzQZpvXHKggzngaLnRulkzLvByhl",
-  "1cUn9Ss2PchRu4ZK3WPIdrVorhH5vxCBD",
-  "1Qe1cKjfieC92OWvlRAIaDStfuBpX1-jv",
-  "15VHKNBChaDuuQrBxGIbHUTl57neyEYGO"
+  "1QXF0J7MtBQ0BBJ2ya3j5tJWW-4e5ogox",
+  "135SEQKCehD9XlaepRoCJYjPxSd5Jiijx",
+  "1GRSh_qjGDHGJm4QmbIRt9vgFyfdOzKey",
+  "1Hd7riu3HAngNz0W4BLhbwz7XsR7IMgbb",
+  "1DA9V4HwDEy1CXdEuo_gH-8mtM63gEz1w"
 ];
 const LATEST_COUNT = 5;
 
 const motionWorks = [
   ["1ezRal0ioC-aDM--e6ONM9kz0--oSj37s", "فيلم علامة بابلو", "PABLO Brand Film"],
+  ["1QXF0J7MtBQ0BBJ2ya3j5tJWW-4e5ogox", "نواعم | شوقر بير", "Nawaem | Sugarbear"],
+  ["135SEQKCehD9XlaepRoCJYjPxSd5Jiijx", "الكيف الأصيل", "AlKaif Al-Aseel"],
+  ["1GRSh_qjGDHGJm4QmbIRt9vgFyfdOzKey", "ماجيك ستور | روايح", "Magic Store | Rawayh"],
+  ["1Hd7riu3HAngNz0W4BLhbwz7XsR7IMgbb", "نواعم | حرب العناية", "Nawaem | Care Wars"],
+  ["1DA9V4HwDEy1CXdEuo_gH-8mtM63gEz1w", "الكيف | شاي وقهوة", "AlKaif | Tea & Coffee"],
+  ["1KcqVbCzSQrO--K1HfTEI_ZUY9Ld1xW0o", "نواعم | العناية بالبشرة", "Nawaem | Skincare"],
+  ["1-tGIiR9uaWRnTkXkRA6nRxDFxBNKrCiy", "متجر الكيف", "AlKaif Store"],
   ["1GONRonFWMfbf8svojeunsC1naJT79Wbz", "إعلان الطالب الجامعي ١", "UniStudent Ad 1"],
   ["1ID7sOzQZpvXHKggzngaLnRulkzLvByhl", "إعلان الطالب الجامعي ٢", "UniStudent Ad 2"],
   ["1cUn9Ss2PchRu4ZK3WPIdrVorhH5vxCBD", "أورا للعطور", "AURA Parfums"],
