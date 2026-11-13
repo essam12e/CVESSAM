@@ -10,16 +10,17 @@ const drivePreview = (id) => `https://drive.google.com/file/d/${id}/preview`;
 // "جديد أعمالنا": the 5 newest works, newest first. Put a new work's Drive ID at the
 // top of this list and the oldest one drops off automatically (only the first 5 show).
 const latestIds = [
+  "11ZLq8ElNX2I3uUJtjeoFo2527udigdMI",
   "1QXF0J7MtBQ0BBJ2ya3j5tJWW-4e5ogox",
   "135SEQKCehD9XlaepRoCJYjPxSd5Jiijx",
   "1GRSh_qjGDHGJm4QmbIRt9vgFyfdOzKey",
-  "1Hd7riu3HAngNz0W4BLhbwz7XsR7IMgbb",
-  "1DA9V4HwDEy1CXdEuo_gH-8mtM63gEz1w"
+  "1Hd7riu3HAngNz0W4BLhbwz7XsR7IMgbb"
 ];
 const LATEST_COUNT = 5;
 
 const motionWorks = [
   ["1ezRal0ioC-aDM--e6ONM9kz0--oSj37s", "فيلم علامة بابلو", "PABLO Brand Film"],
+  ["11ZLq8ElNX2I3uUJtjeoFo2527udigdMI", "ماجيك ستور | ريل ٢", "Magic Store | Reel 2"],
   ["1QXF0J7MtBQ0BBJ2ya3j5tJWW-4e5ogox", "نواعم | شوقر بير", "Nawaem | Sugarbear"],
   ["135SEQKCehD9XlaepRoCJYjPxSd5Jiijx", "الكيف الأصيل", "AlKaif Al-Aseel"],
   ["1GRSh_qjGDHGJm4QmbIRt9vgFyfdOzKey", "ماجيك ستور | روايح", "Magic Store | Rawayh"],
